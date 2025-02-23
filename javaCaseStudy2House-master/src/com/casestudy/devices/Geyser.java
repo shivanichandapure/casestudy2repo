@@ -3,13 +3,11 @@ package com.casestudy.devices;
 import com.casestudy.interfaces.WashroomDevice;
 
 public class Geyser extends Device implements WashroomDevice {
-    public Geyser(int id,String roomName, boolean status) {
-        super(id, "Geyser",roomName, status);
+
+    public Geyser() {
     }
 
-
-    @Override
-    public void addDevice() {
-
+    public Geyser(int deviceId, String deviceName) {
+        super(deviceId, deviceName);
     }
 }

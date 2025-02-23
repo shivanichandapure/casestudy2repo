@@ -1,46 +1,74 @@
 package com.casestudy.devices;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 public class Device {
-    private int id;
-    private String name;
-    private  String roomName;
-    private boolean status;
+    int deviceId;
+    String deviceName;
 
-    public Device(int id, String name,String roomName, boolean status) {
-        this.id = id;
-        this.name = name;
-        this.roomName= roomName;
-        this.status = this.status;
+    private long lastOnTime;
+    private long  totalOnTime;
+    String roomNameofDevice;
+    private boolean isOn=false;
+
+    public Device() {
     }
 
-    public int getId() {
-        return id;
+    public Device(int deviceId, String deviceName) {
+        this.deviceId = deviceId;
+        this.deviceName = deviceName;
+    }
+    public boolean isOn() {
+        return isOn;
+    }
+    public int getDeviceId() {
+        return deviceId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDeviceId(int deviceId) {
+        this.deviceId = deviceId;
     }
 
-    public String getName() {
-        return name;
+    public String getDeviceName() {
+        return deviceName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
     }
 
-    public boolean isStatus() {
-        return status;
+    public String getRoomNameofDevice() {
+        return roomNameofDevice;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setRoomNameofDevice(String roomNameofDevice) {
+        this.roomNameofDevice = roomNameofDevice;
+    }
+    public void turnOn() {
+
+        isOn = true;
+        lastOnTime = System.currentTimeMillis();
+        System.out.println(deviceName + " is now ON.");
     }
 
-    public String getRoomName() {
-        return roomName;
+    public void turnOff() {
+        this.isOn = false;
+        totalOnTime += (System.currentTimeMillis() - lastOnTime); // Add elapsed time
+        System.out.println(deviceName + " is now OFF.");
     }
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
+    public long checkTotalOnTime() {
+        if (isOn) {
+            return totalOnTime + (System.currentTimeMillis() - lastOnTime); // Include current session
+        }
+        return totalOnTime;
+    }
+    @Override
+    public String toString() {
+        return "Device{" +
+                "deviceId=" + deviceId +
+                ", deviceName='" + deviceName + '\'' +
+                ", Status='" + (isOn ? "ON" : "OFF") +
+                '}';
     }
 }

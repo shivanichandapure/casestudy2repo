@@ -4,14 +4,11 @@ import com.casestudy.interfaces.*;
 
 public class Light extends Device implements BedroomDevice, KitchenDevice, WashroomDevice,
         LivingRoomDevice, CorridorDevice {
-    public Light(int id,String roomName, boolean status) {
-        super(id, "Light",roomName, status);
+
+    public Light() {
     }
 
-    @Override
-    public void addDevice() {
-
+    public Light(int deviceId, String deviceName) {
+        super(deviceId, deviceName);
     }
-
-
 }
